@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ToolController extends Controller
 {
@@ -86,7 +87,11 @@ class ToolController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = ([
+            'hal' => 'UpdateData',
+            'tools' => Tool::find($id),
+        ]);
+        return view('admin.tool.update', $data);
     }
 
     /**
@@ -98,7 +103,34 @@ class ToolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Tool::find($id);
+        $rules = [
+            'kode' => 'required',
+            'tool_name' => 'required',
+            'tool_spec' => 'required',
+            'tool_material' => 'required',
+            'image' => 'image|file|max:1024',
+            'standard_using' => 'required|numeric',
+            'price' => 'required|numeric'
+        ];
+
+        if ($data->part_no != $request->part_no) {
+            $rules['part_no'] = 'required|unique:tools';
+        }
+
+        $validated = $request->validate($rules);
+
+        if ($request->file('image')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validated['image'] = $request->file('image')->store('tool-image');
+        }
+
+        Tool::where('id', $id)
+            ->update($validated);
+
+        return redirect()->route('tool.index')->with('success', 'Data has been updated');
     }
 
     /**
@@ -109,6 +141,10 @@ class ToolController extends Controller
      */
     public function destroy($id)
     {
+        $data = Tool::find($id);
+        if ($data->image) {
+            Storage::delete($data->image);
+        }
         Tool::destroy($id);
 
         return redirect('admin/tool')->with('success', 'Data has been deleted');

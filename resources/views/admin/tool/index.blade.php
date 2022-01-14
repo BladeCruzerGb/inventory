@@ -57,7 +57,7 @@
               <td>{{ $tool->stock }}</td>
               <td class="text-center">
                 <a href="{{ route('tool.show',$tool->id) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Detail"><i class="nav-icon fas fa-info"></i></a>
-                <a href="" class="ml-2" data-bs-toggle="tooltip" title="Edit"><i class="nav-icon fas fa-edit"></i></a>
+                <a href="{{ route('tool.edit', $tool->id) }}" class="ml-2" data-bs-toggle="tooltip" title="Edit"><i class="nav-icon fas fa-edit"></i></a>
                 <form action="{{ route('tool.destroy',$tool->id) }}" method="post" class="d-inline">
                   @method('delete')
                   @csrf

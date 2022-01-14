@@ -23,7 +23,7 @@
   <div class="card-body box-profile">
     <div class="text-center">
       @if ($datatool->image)
-        <img class="profile-user-img img-fluid img-circle mb-3"
+        <img class="profile-user-img img-fluid mb-3"
         src="{{ asset('storage/' . $datatool->image) }}"
         alt="User profile picture">
       @else
