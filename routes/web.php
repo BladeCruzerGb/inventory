@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\InputToolController;
+use App\Http\Controllers\RtuController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,11 +32,12 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth', 'PreventBackHistory']], function () {
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::resource('tool', ToolController::class);
-    Route::resource('intool', InputToolController::class);
 });
 
 Route::group(['prefix' => 'user', 'middleware' => ['isUser', 'auth', 'PreventBackHistory']], function () {
     Route::get('dashboard', [UserController::class, 'index'])->name('user.dashboard');
+    Route::resource('intool', InputToolController::class);
+    Route::get('/rtu', [RtuController::class, 'index'])->name('rtu');
 });
 
 Route::get('/logout', function () {

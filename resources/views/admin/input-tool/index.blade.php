@@ -32,7 +32,7 @@
         <div class="card">
           <div class="card-header">
             <a href="intool/create" class="btn btn-primary">Add Data</a>
-          </div>
+          </div>   
           <div class="card-body">
             <table id="inputTable" class="table table-bordered table-striped">
               <thead>

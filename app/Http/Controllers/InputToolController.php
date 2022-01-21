@@ -20,7 +20,7 @@ class InputToolController extends Controller
             'halaman' => 'Input Tool',
             'inputs' => InputTool::all()
         ]);
-        return view('admin.input-tool.index', $data);
+        return view('user.input-tool.index', $data);
     }
 
     /**
@@ -62,7 +62,7 @@ class InputToolController extends Controller
         $tool = new Tool;
         $tool->where('part_no', '=', $request->part_no)->increment('stock', $request->qty);
 
-        return redirect('admin/intool');
+        return redirect('user/intool')->with('success', 'Input data has been created');
     }
     /**
      * Display the specified resource.
