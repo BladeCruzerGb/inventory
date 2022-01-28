@@ -1,6 +1,5 @@
 @extends('templates.main')
 
-@section('title', 'INPUT')
 @section('bread')
 <div class="container-fluid">
   <div class="row mb-2">

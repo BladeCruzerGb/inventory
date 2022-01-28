@@ -8,11 +8,12 @@
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
       <li class="breadcrumb-item"><a href="{{ route('user.dashboard') }}">Home</a></li>
-      <li class="breadcrumb-item active">{{ $halaman }}</li>
+      <li class="breadcrumb-item active">{{ $halaman }}</a></li>
     </ol>
   </div>
 </div>
-@endsection
+@endsection 
+
 @section('content')
 <div class="container">
 
@@ -27,31 +28,33 @@
     <div class="col-lg">
       <div class="card">
         <div class="card-header">
-            <a href="intool/create" class="btn btn-primary">Add Data</a>
+            <a href="{{ route('bat.create') }}" class="btn btn-primary">Add Data</a>
           </div> 
         <div class="card-body">
-            <table id="inputTable" class="table table-bordered table-striped">
+            <table id="batTable" class="table table-bordered table-striped">
                 <thead>
                   <tr>
                     <th>No</th>
                     <th>Tanggal</th>
                     <th>Section</th>
-                    <th>Part No</th>
-                    <th>Tool Specification</th>
-                    <th>Qty</th>
+                    <th>No BAT</th>
+                    <th>Kode</th>
+                    <th>Quantity</th>
+                    <th>Note</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @foreach ($inputs as $input)
-                    <tr>
-                      <td>{{ $loop->iteration }}</td>
-                      <td>{{ $input->created_at->format('d-m-Y') }}</td>
-                      <td>{{ $input->section }}</td>
-                      <td>{{ $input->part_no }}</td>
-                      <td>{{ $input->spec }}</td>
-                      <td>{{ $input->qty }}</td>
-                    </tr>     
-                    @endforeach
+                  @foreach ($items as $b)
+                  <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $b->bat->created_at->format('d-m-Y') }}</td>
+                    <td>{{ $b->bat->section }}</td>
+                    <td>{{ $b->bat->no }}</td>
+                    <td>{{ $b->kode }}</td>
+                    <td>{{ $b->qty }}</td>
+                    <td>{{ $b->note }}</td> 
+                  </tr>       
+                  @endforeach
                 </tbody>
               </table>
         </div>
@@ -64,10 +67,10 @@
 @push('scripts')
 <script>
   $(function () {
-    $("#inputTable").DataTable({
+    $("#batTable").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#inputTable_wrapper .col-md-6:eq(0)');
+    }).buttons().container().appendTo('#batTable_wrapper .col-md-6:eq(0)');
   });
 </script>
 @endpush

@@ -14,7 +14,10 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        $data = ([
+            'title' => 'HOME'
+        ]);
+        return view('admin.dashboard.index', $data);
     }
 
     public function getnotool($id = 0)

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BatController;
 use App\Http\Controllers\InputToolController;
 use App\Http\Controllers\RtuController;
 use App\Http\Controllers\ToolController;
@@ -38,6 +39,7 @@ Route::group(['prefix' => 'user', 'middleware' => ['isUser', 'auth', 'PreventBac
     Route::get('dashboard', [UserController::class, 'index'])->name('user.dashboard');
     Route::resource('intool', InputToolController::class);
     Route::get('/rtu', [RtuController::class, 'index'])->name('rtu');
+    Route::resource('bat', BatController::class);
 });
 
 Route::get('/logout', function () {

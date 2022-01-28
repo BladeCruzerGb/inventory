@@ -1,4 +1,4 @@
-@extends('templates.main')
+@extends('templates-user.main')
 
 @section('title', 'INPUT')
 @section('bread')

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> PE3A | @yield('title')</title>
+  <title> {{ $title }} | {{ $halaman }}</title>
 
   @include('templates.style')
 

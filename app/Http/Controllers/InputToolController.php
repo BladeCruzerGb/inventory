@@ -17,6 +17,7 @@ class InputToolController extends Controller
     public function index()
     {
         $data = ([
+            'title' => 'PE3A',
             'halaman' => 'Input Tool',
             'inputs' => InputTool::all()
         ]);
@@ -32,13 +33,14 @@ class InputToolController extends Controller
     {
 
         $data = ([
+            'title' => 'PE3A',
             'halaman' => 'Input Tool',
             'hal' => 'Create Input Tool',
             'inputs' => InputTool::all(),
             'sections' => Section::all(),
             'tools' => Tool::all()
         ]);
-        return view('admin.input-tool.create', $data);
+        return view('user.input-tool.create', $data);
     }
 
     /**

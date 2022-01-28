@@ -13,7 +13,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user.dashboard.index');
+        $data = ([
+            'title' => 'PE3A',
+            'halaman' => 'Home'
+        ]);
+        return view('user.dashboard.index', $data);
     }
 
     /**
